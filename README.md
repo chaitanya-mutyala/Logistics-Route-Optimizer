@@ -20,7 +20,7 @@ This project finds the optimal delivery route between cities based on traffic co
 Logistics-Route-Optimizer/
 │
 ├── data/
-│   └── routes.csv                # Source/destination pairs with distance & travel info
+│   └── traffic_data.csv                # Source/destination pairs with distance & travel info (source,target,distance,time_of_day,traffic_level,travel_time
 │
 ├── src/
 │   ├── cli.py                    # CLI entry-point for user interaction
@@ -49,6 +49,57 @@ Logistics-Route-Optimizer/
 
 ---
 
+## 📊 Algorithms and Libraries Used
+
+- Dijkstra's Algorithm – For shortest path optimization
+
+- Random Forest Regression – For travel time prediction
+
+- Pandas, NetworkX, Matplotlib – For data handling and visualization
+
+---
+
+## 🔍 How It Works
+
+1. **Input**  
+   - Source city and destination city  
+   - Time of day and traffic level 
+   - Inputs are to be given in `csi.py` after running it
+
+2. **Graph Setup**  
+   - Reads a CSV file to construct a directed graph  
+   - Each edge represents a possible route between two locations
+
+3. **Prediction**  
+   - For each edge `(u, v)`:
+     - Distance is read from the CSV  
+     - Time of day and traffic level are passed to `predictor.py`  
+     - A pre-trained ML model (`.pkl` file) predicts travel time → this becomes the edge weight
+
+4. **Optimization**  
+   - Dijkstra’s algorithm is used to find the path with the least total predicted travel time
+
+5. **Output**  
+   - Displays the optimized route  
+   - graph aswell if selected
+
+---
+
+## 📂 What Each File Does
+
+| File                         | Purpose                                                  |
+|------------------------------|----------------------------------------------------------|
+| `src/cli.py`                 | Main user interface, collects inputs, calls route logic  |
+| `src/dijkstra.py`            | Custom Dijkstra with ML-adjusted weights                 |
+| `src/predictor.py`           | Preprocesses input and calls ML `.predict()`             |
+| `src/visualize_route.py`     | Visualizes the optimized route                           |
+| `ml/travel_time_model.pkl`   | Trained `RandomForestRegressor` model                    |
+| `notebooks/train_model.ipynb`| Custom graph creation and model training                 |
+| `data/traffic_data.csv`      | Traffic data                                             |
+
+
+---
+
 ## 💻 How to Use
 
 ### 1. Clone the repository
@@ -72,10 +123,6 @@ You will be prompted to enter:
 - Time of day (e.g., 08:00)
 - Traffic level (low / medium / high)
 
-### 4. Visualize Route (optional)
-```bash
-python src/visualize_route.py
-```
 
 ---
 
@@ -85,21 +132,7 @@ python src/visualize_route.py
 2. Open `train_model.ipynb` in Jupyter.
 3. Prepare your own `CSV` with `source`, `destination`, `distance`, `traffic_level`, `hour`, and `travel_time`.
 4. Run the notebook to generate a new `.pkl` model.
-5. Replace the existing `ml/travel_time_model.pkl` with your own.
-
----
-
-## 📦 Requirements
-
-Include the following in `requirements.txt`:
-
-```
-pandas
-scikit-learn
-matplotlib
-networkx
-joblib
-```
+5. Replacing the existing `ml/travel_time_model.pkl` with your own.
 
 ---
 
@@ -113,21 +146,22 @@ joblib
 
 ## 💡 Future Upgrades
 
-- Integrate real-time traffic API (like Google Maps API)
-- Web-based UI for better UX
-- Multi-source delivery optimization
-- Weather-aware routing
+- 🔄 Integrate with real-time traffic APIs like Google Maps or OpenStreetMap
+- 🧭 Web-based UI (Flask or Streamlit)
+- 🗺️ Multi-route / multi-agent simulation
+- 📉 Use live telemetry data for continuous ML model retraining
+- 🧾 Store route history and performance analytics
 
 ---
 
-## ❓ FAQ
+## 🤝 Contributing
 
-### Will the ML model train automatically after cloning?
-No. The `.pkl` file is pre-trained and provided. For training your own model, use the included Jupyter notebook.
-
-### Can I use my own data?
-Yes! Use `train_model.ipynb` to train a model with your custom CSV.
+- PRs welcome! For suggestions, bug reports, or ideas, open an issue.
 
 ---
 
-© 2025 Logistics Route Optimizer
+## 👨‍💻 Author
+
+- Made with ❤️ for portfolio & learning.
+
+---
