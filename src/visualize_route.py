@@ -8,7 +8,7 @@ def visualize_route(csv_path, route):
 
     # Add edges and weights
     for _, row in df.iterrows():
-        G.add_edge(row['source'], row['destination'], weight=row['distance'])
+        G.add_edge(row['source'], row['target'], weight=row['distance'])
 
     pos = nx.spring_layout(G, seed=42)
 

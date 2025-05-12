@@ -18,9 +18,10 @@ This project finds the optimal delivery route between cities based on traffic co
 
 ```
 Logistics-Route-Optimizer/
+├── assests/                           # to store screenshots of output 
 │
 ├── data/
-│   └── traffic_data.csv                # Source/destination pairs with distance & travel info (source,target,distance,time_of_day,traffic_level,travel_time
+│   └── traffic_data.csv                # Source/destination pairs with distance & travel info (source,target,distance,time_of_day,traffic_level,travel_time)
 │
 ├── src/
 │   ├── cli.py                    # CLI entry-point for user interaction
@@ -117,12 +118,25 @@ pip install -r requirements.txt
 ```bash
 python src/cli.py
 ```
+⚠️ Note: After cloning the repo, open the entire folder (Logistics-Route-Optimizer) in VS Code or your IDE, not just individual files.
+This avoids relative path issues when running scripts.
+
 You will be prompted to enter:
 - Source node
 - Destination node
 - Time of day (e.g., 08:00)
 - Traffic level (low / medium / high)
 
+
+---
+
+## 📊 Sample Output / Visualization
+
+- 🖥️ **Sample Output - CLI Interface**  
+  ![CLI Output](assets/cli.png)
+
+- 🌍 **Sample Graph - Route Visualization**  
+  ![Route Visualization](assets/graph.png)
 
 ---
 
