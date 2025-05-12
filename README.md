@@ -133,10 +133,10 @@ You will be prompted to enter:
 ## 📊 Sample Output / Visualization
 
 - 🖥️ **Sample Output - CLI Interface**  
-  ![CLI Output](assets/cli.png)
+  ![CLI Output](assests/cli.png)
 
 - 🌍 **Sample Graph - Route Visualization**  
-  ![Route Visualization](assets/graph.png)
+  ![Route Visualization](assests/graph.png)
 
 ---
 
